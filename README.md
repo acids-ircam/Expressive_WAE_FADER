@@ -1,13 +1,12 @@
 # Assisted Sound Sample Generation with Musical Conditioning in Adversarial Auto-Encoders
 
-This repository is a companion to the DAFx19 submission:
-Adrien Bitton, Philippe Esling, Antoine Caillon, Martin Fouilleul, "Assisted Sound Sample Generation with Musical Conditioning in Adversarial Auto-Encoders".
+This repository is a companion to the paper presented at DAFx-19 (22nd International Conference on Digital Audio Effects, Birmingham, UK): Adrien Bitton, Philippe Esling, Antoine Caillon, Martin Fouilleul, "Assisted Sound Sample Generation with Musical Conditioning in Adversarial Auto-Encoders".
 
-Preliminary works can be accessed at https://github.com/adrienchaton/Timbre_MoVE and https://github.com/nebularnoise/serge.
+Preliminary works can be accessed at https://github.com/acids-ircam/Timbre_MoVE and https://github.com/nebularnoise/serge.
 
-An Arxiv pre-print can be accessed at https://arxiv.org/abs/1904.06215. However, the paper is **not reviewed** yet.
+An Arxiv pre-print can be accessed at https://arxiv.org/abs/1904.06215.
 
-☆ﾟ This demonstration repository is in progress, additional results from the final experiment will be uploaded, as well as codes and plugin implementation after the reviewing process.
+☆ﾟ This demonstration repository is in progress, additional results from the final experiment will be uploaded, as well as codes and plugin implementation.
 
 
 ## ABSTRACT
@@ -38,11 +37,11 @@ We plot log-scaled input Mel-spectrogram magnitudes and corresponding WAE-Fader 
 
 <img src="figures/Fader_rec_allinst_ordinario.png">
 
-https://github.com/adrienchaton/Expressive_WAE_FADER/blob/master/figures/Fader_rec_allinst_ordinario.pdf
+https://github.com/acids-ircam/Expressive_WAE_FADER/blob/master/figures/Fader_rec_allinst_ordinario.pdf
 
 <img src="figures/Fader_rec_violin_allstyle.png">
 
-https://github.com/adrienchaton/Expressive_WAE_FADER/blob/master/figures/Fader_rec_violin_allstyle.pdf
+https://github.com/acids-ircam/Expressive_WAE_FADER/blob/master/figures/Fader_rec_violin_allstyle.pdf
 
 ♪ **Latent spaces and adversarial training**
 
@@ -56,23 +55,23 @@ We plot the learned latent representations of different models and data subsets.
 
 <img src="figures/TSNE2Ds_allinst_allstyle_mod.png">
 
-https://github.com/adrienchaton/Expressive_WAE_FADER/blob/master/figures/TSNE2Ds_allinst_allstyle.pdf
+https://github.com/acids-ircam/Expressive_WAE_FADER/blob/master/figures/TSNE2Ds_allinst_allstyle.pdf
 
 WAE-MMD (only regularization, no conditioning) mainly highlights octave classes (2nd row) while WAE-note more strongly relates to the style subsets (timbre domains), as the note conditioning already accounts for these features. WAE-style and WAE-Fader both tend to equally mix each type (row) of attribute.
 
 <img src="figures/RAW3Ds_allinst_allstyle.png">
 
-https://github.com/adrienchaton/Expressive_WAE_FADER/blob/master/figures/RAW3Ds_allinst_allstyle.pdf
+https://github.com/acids-ircam/Expressive_WAE_FADER/blob/master/figures/RAW3Ds_allinst_allstyle.pdf
 
 ☽ The following plots display the final latent representations learned by the models of the ablation study training on the 10 playing style subsets of the violin. Accordingly the bottom row has coloring for these 10 playing style domains, which are the style attributes being classified in the WAE-Fader.
 
 <img src="figures/TSNE2Ds_violin_allstyle_mod.png">
 
-https://github.com/adrienchaton/Expressive_WAE_FADER/blob/master/figures/TSNE2Ds_violin_allstyle.pdf
+https://github.com/acids-ircam/Expressive_WAE_FADER/blob/master/figures/TSNE2Ds_violin_allstyle.pdf
 
 <img src="figures/RAW3Ds_violin_allstyle.png">
 
-https://github.com/adrienchaton/Expressive_WAE_FADER/blob/master/figures/RAW3Ds_violin_allstyle.pdf
+https://github.com/acids-ircam/Expressive_WAE_FADER/blob/master/figures/RAW3Ds_violin_allstyle.pdf
 
 For WAE-Fader models, we as well monitor the evolution of the latent representation throughout the model training and adversarial latent classification. In this setting, the Fader latent discriminator tries to classify style attributes from the non-conditional encoder output **z**. In turn and after the **α-warmup** has started, the encoder tries to fool the discriminator so that its latent representation cannot be properly classified. It encourages an attribute-free latent code and pushes the decoder to learn its conditioning. At first is pre-classification, only the Fader classification is optimized without adversarial back-propagation in the encoder (α=0). After this and until the end of the first half of training epochs, α is gradually increased to its target value (warmup:0➔4) and then remains fixed until the end of the training.
 
